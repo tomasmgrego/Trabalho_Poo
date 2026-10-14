@@ -1,0 +1,32 @@
+    Constantes do Ambiente:
+
+Tipos de Quadrado:
+--> Água
+    Humidity: Fixa em 1
+    Food: Normal em x
+    Sat_prey: K
+    Sat_pred: K
+
+--> Pântano
+    Humidity: Normal em x
+    Food: Normal em x
+    Sat_prey: K
+    Sat_pred: K
+
+--> Terra Seca
+    Humidity: Normal em x
+    Food: Normal em x
+    Sat_prey: K
+    Sat_pred: K
+
+--> Mato Alto
+    Humidity: Normal em x
+    Food: Normal em x
+    Sat_prey: K
+    Sat_pred: K
+
+--> Mato Baixo
+    Humidity: Normal em x
+    Food: Normal em x
+    Sat_prey: K
+    Sat_pred: K
