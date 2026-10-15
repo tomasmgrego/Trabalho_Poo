@@ -96,12 +96,16 @@ void water::calcAttributes() {
 
     std::normal_distribution<double> gauss1(0.5, 0.1667);
     humidity = std::clamp(gauss1(gen), 0.0, 1.0);
+    
     std::normal_distribution<double> gauss2(0.5, 0.1667);
     food = std::clamp(gauss2(gen), 0.0, 1.0);
+    
     std::normal_distribution<double> gauss3(50.0, 16.67);
     satPrey = std::clamp(gauss3(gen), 0.0, 100.0);
+    
     std::normal_distribution<double> gauss4(50.0, 16.67);
     satPred = std::clamp(gauss4(gen), 0.0, 100.0);
+    
     std::normal_distribution<double> gauss5(0.0, 33.0);
     temperature = std::clamp(gauss5(gen), -100.0, 100.0);
 }
@@ -112,12 +116,16 @@ void swamp::calcAttributes() {
 
     std::normal_distribution<double> gauss1(0.5, 0.1667);
     humidity = std::clamp(gauss1(gen), 0.0, 1.0);
+    
     std::normal_distribution<double> gauss2(0.5, 0.1667);
     food = std::clamp(gauss2(gen), 0.0, 1.0);
+    
     std::normal_distribution<double> gauss3(50.0, 16.67);
     satPrey = std::clamp(gauss3(gen), 0.0, 100.0);
+    
     std::normal_distribution<double> gauss4(50.0, 16.67);
     satPred = std::clamp(gauss4(gen), 0.0, 100.0);
+    
     std::normal_distribution<double> gauss5(0.0, 33.0);
     temperature = std::clamp(gauss5(gen), -100.0, 100.0);
 }
@@ -128,12 +136,16 @@ void dryDirt::calcAttributes() {
 
     std::normal_distribution<double> gauss1(0.5, 0.1667);
     humidity = std::clamp(gauss1(gen), 0.0, 1.0);
+
     std::normal_distribution<double> gauss2(0.5, 0.1667);
     food = std::clamp(gauss2(gen), 0.0, 1.0);
+    
     std::normal_distribution<double> gauss3(50.0, 16.67);
     satPrey = std::clamp(gauss3(gen), 0.0, 100.0);
+    
     std::normal_distribution<double> gauss4(50.0, 16.67);
     satPred = std::clamp(gauss4(gen), 0.0, 100.0);
+    
     std::normal_distribution<double> gauss5(0.0, 33.0);
     temperature = std::clamp(gauss5(gen), -100.0, 100.0);
 }
@@ -144,12 +156,16 @@ void tallGrass::calcAttributes() {
 
     std::normal_distribution<double> gauss1(0.5, 0.1667);
     humidity = std::clamp(gauss1(gen), 0.0, 1.0);
+
     std::normal_distribution<double> gauss2(0.5, 0.1667);
     food = std::clamp(gauss2(gen), 0.0, 1.0);
+
     std::normal_distribution<double> gauss3(50.0, 16.67);
     satPrey = std::clamp(gauss3(gen), 0.0, 100.0);
+
     std::normal_distribution<double> gauss4(50.0, 16.67);
     satPred = std::clamp(gauss4(gen), 0.0, 100.0);
+
     std::normal_distribution<double> gauss5(0.0, 33.0);
     temperature = std::clamp(gauss5(gen), -100.0, 100.0);
 }
@@ -160,12 +176,16 @@ void shortGrass::calcAttributes() {
 
     std::normal_distribution<double> gauss1(0.5, 0.1667);
     humidity = std::clamp(gauss1(gen), 0.0, 1.0);
+
     std::normal_distribution<double> gauss2(0.5, 0.1667);
     food = std::clamp(gauss2(gen), 0.0, 1.0);
+
     std::normal_distribution<double> gauss3(50.0, 16.67);
     satPrey = std::clamp(gauss3(gen), 0.0, 100.0);
+
     std::normal_distribution<double> gauss4(50.0, 16.67);
     satPred = std::clamp(gauss4(gen), 0.0, 100.0);
+
     std::normal_distribution<double> gauss5(0.0, 33.0);
     temperature = std::clamp(gauss5(gen), -100.0, 100.0);
 }
