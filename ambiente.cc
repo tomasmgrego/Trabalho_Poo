@@ -90,6 +90,46 @@ double square::getTemperature() const {
 
 }
 
+void square::enterFrog(Frog* f) {
+
+    frogsInTile.push_back(f);
+}
+
+void square::leaveFrog(Frog* f) {
+
+    frogsInTile.erase(std::remove(frogsInTile.begin(), frogsInTile.end(), f), frogsInTile.end());
+}
+
+int square::getFrogNum() const {
+
+    return frogsInTile.size();
+}
+
+std::vector<Frog*>& square::getFrogs() {
+
+    return frogsInTile;
+}
+
+void square::enterSnake(Snake* s) {
+
+    snakesInTile.push_back(s);
+}
+
+void square::leaveSnake(Snake* s) {
+
+    snakesInTile.erase(std::remove(snakesInTile.begin(), snakesInTile.end(), s), snakesInTile.end());
+}
+
+int square::getSnakeNum() const {
+
+    return snakesInTile.size();
+}
+
+std::vector<Snake*>& square::getSnakes() {
+    
+    return snakesInTile;
+}
+
 water::water() : square(1) {}
 
 void water::calcAttributes() {

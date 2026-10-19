@@ -5,7 +5,12 @@
 #include <stdlib.h>
 #include <cmath>
 #include <fstream>
+#include <random>
+#include <vector>
+#include <algorithm>
+#include <functional>
 
+#include "ambiente.hh"
 
 struct tempRange {
 
@@ -19,6 +24,14 @@ struct tempRange {
 
 };
 
+enum class OrientationIntent {
+
+    Food,
+    Breed,
+    Humidity,
+    Temperature
+
+};
 
 struct Genes {
 
@@ -26,7 +39,18 @@ struct Genes {
 
     double size;
     double physicCapacity;
+    double agingEffect;
+
+    tempRange idealTemp;
+    double tempEffect;
+
+    double minHumid;
+    double humidEffect;
+
     double metabolism;
+
+    double foodNeed;
+    double foodDigestion;
 
     double mateAwareness;
     double predAwareness;
@@ -34,15 +58,17 @@ struct Genes {
 
     double foodOrientation;
     double tempOrientation;
+    double humidOrientation;
     double breedOrientation;
 
     double matureAge;
     double fertility;
 
-    tempRange idealTemp;
-
 };
 
+Genes genRandomGenes(std::mt19937& gen);
+
+class generator;
 
 class Animal {
 
@@ -54,23 +80,62 @@ class Animal {
         double energyReservatory;
         double vitalEnergy;
         
-        int tileOccupated;
+        int tileX;
+        int tileY;
+
         Genes DNA;
     
     public:
 
-        Animal(uint ID, int initialTile, Genes genes);
+        Animal(uint ID, int initX, int initY, Genes genes);
         virtual ~Animal() = default;
 
-        virtual void breathe() = 0;
-        virtual void eat() = 0;
-        virtual void move() = 0;
-        virtual void reproduce() = 0;
+        int getTileX() const { return tileX; }
+        int getTileY() const { return tileY; }
 
-        virtual void update();
+        void ageUpdate(int quantity = 10) { age += quantity; }
 
-        bool isAlive() const {return vitalEnergy > 0.0};
+        virtual void eat(generator& world) = 0;
+        virtual void move(generator& world) = 0;
+        virtual void reproduce(generator& world) = 0;
+
+        virtual void breathe(generator& world);
+
+        virtual void update(generator& world);
+
+        bool isAlive() const { return vitalEnergy > 0.0; }
     
 };
+
+class Frog : public Animal {
+
+    private:
+
+    public:
+
+        Frog(unsigned int id, float startX, float startY, Genes genes);
+    
+        void move(generator& world) override;
+        void eat(generator& world) override;
+        
+        Frog* reproduce(const Frog& partner);
+
+};
+
+class Snake : public Animal {
+
+    private:
+
+    public:
+
+        Snake(unsigned int id, float startX, float startY, Genes genes);
+    
+        void move(generator& world) override;
+        void eat(generator& world) override;
+        
+        Snake* reproduce(const Snake& partner);
+
+};
+
 
 #endif

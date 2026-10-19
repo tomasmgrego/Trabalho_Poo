@@ -4,6 +4,10 @@
 #include <random>
 #include <memory>
 #include <algorithm>
+#include <vector>
+
+class Frog;
+class Snake;
 
 class square {
 
@@ -16,6 +20,9 @@ class square {
         double temperature;
 
         std::mt19937 gen;
+
+        std::vector<Frog*> frogsInTile;
+        std::vector<Snake*> snakesInTile;
 
     public:
 
@@ -30,6 +37,18 @@ class square {
         double getSatPrey() const;
         double getSatPred() const;
         double getTemperature() const;
+
+        void enterFrog(Frog* f);
+        void leaveFrog(Frog* f);
+        int getFrogNum() const;
+
+        std::vector<Frog*>& getFrogs();
+
+        void enterSnake(Snake* s);
+        void leaveSnake(Snake* s);
+        int getSnakeNum() const;
+
+        std::vector<Snake*>& getSnakes();
 
         virtual void calcAttributes() = 0;
 
