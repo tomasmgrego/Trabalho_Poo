@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <cmath>
 #include <fstream>
+#include <iostream>
 
 generator::generator() {}
 
@@ -22,32 +23,38 @@ void generator::ambienteGenerator() {
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
 
-            int numero = dist(gen);
+            try {
+                int numero = dist(gen);
 
-            switch(numero){
-                case 1:
-                    ambienteCompleto[i][j] = std::make_unique<water>();
+                switch(numero){
+                    case 1:
+                        ambienteCompleto[i][j] = std::make_unique<water>();
 
-                    break;
-                case 2:
-                    ambienteCompleto[i][j] = std::make_unique<swamp>();
+                        break;
+                    case 2:
+                        ambienteCompleto[i][j] = std::make_unique<swamp>();
 
-                    break;
-                case 3:
-                    ambienteCompleto[i][j] = std::make_unique<dryDirt>();
+                        break;
+                    case 3:
+                        ambienteCompleto[i][j] = std::make_unique<dryDirt>();
 
-                    break;
-                case 4:
-                    ambienteCompleto[i][j] = std::make_unique<tallGrass>();
+                        break;
+                    case 4:
+                        ambienteCompleto[i][j] = std::make_unique<tallGrass>();
 
-                    break;
-                case 5:
-                    ambienteCompleto[i][j] = std::make_unique<shortGrass>();
+                        break;
+                    case 5:
+                        ambienteCompleto[i][j] = std::make_unique<shortGrass>();
 
-                    break;
+                        break;
+                }
+                ambienteCompleto[i][j]->calcAttributes();
+
             }
-            ambienteCompleto[i][j]->calcAttributes();
-
+            catch (const std::exception& e) {
+                std::cout << "Exceção capturada: " << e.what() << '\n';
+        
+            }
         }
     }
 }

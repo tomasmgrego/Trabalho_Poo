@@ -20,18 +20,27 @@ int main() {
     std::vector<std::unique_ptr<Frog>> frogPopulation;
 
     for (int i = 0; i < numInitialFrogs; ++i) {
+        try {
+
+            int randX = posDist(gen);
+            int randY = posDist(gen);
+
+            Genes genesFrog = genRandomGenes(gen);
+
+            auto newFrog = std::make_unique<Frog>(i, randX, randY, genesFrog);
+
+            square& s = meuAmbiente.getSquare(randX, randY);
+            s.enterFrog(newFrog.get());
+
+            frogPopulation.push_back(std::move(newFrog));
+            
+        }
         
-        int randX = posDist(gen);
-        int randY = posDist(gen);
+        catch (const std::exception& e) {
 
-        Genes genesFrog = genRandomGenes(gen);
-
-        auto newFrog = std::make_unique<Frog>(i, randX, randY, genesFrog);
-
-        square& s = meuAmbiente.getSquare(randX, randY);
-        s.enterFrog(newFrog.get());
-
-        frogPopulation.push_back(std::move(newFrog));
+            std::cout << "Exceção capturada: " << e.what() << '\n';
+        }
+            
     }
 
     for (int i = 0; i < 3; i++) {
