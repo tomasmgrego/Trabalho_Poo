@@ -101,8 +101,6 @@ class Animal {
 
         virtual void breathe(generator& world);
 
-        virtual void update(generator& world);
-
         bool isAlive() const { return vitalEnergy > 0.0; }
     
 };

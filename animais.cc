@@ -56,7 +56,7 @@ void Animal::breathe(generator& world) {
 
     if(!DNA.idealTemp.isIdealTemp(currentTemp)) {
 
-        double tempDiff = std::min((std::abs(currentTemp - DNA.idealTemp.minTemp)), 
+        double tempDiff = std::max((std::abs(currentTemp - DNA.idealTemp.minTemp)), 
                                     (std::abs(DNA.idealTemp.maxTemp - currentTemp)));
         
         trueMetabolism += (tempDiff * DNA.tempEffect);
@@ -73,19 +73,6 @@ void Animal::breathe(generator& world) {
 
     vitalEnergy = vitalEnergy + (energyReservatory - trueMetabolism);
 
-}
-
-void Animal::update(generator& world) {
-
-    breathe(world);
-
-    if(isAlive) {
-
-        eat(world);
-        move(world);
-        reproduce(world);
-
-    }
 }
 
 void Frog::eat(generator& world) {
@@ -128,16 +115,21 @@ void Frog::move(generator& world) {
         int y;
     };
 
-    std::vector<TileInfo> adjacentTiles = {
-        { &world.getSquare(tileX, tileY + 1),     tileX,     tileY + 1 },
-        { &world.getSquare(tileX - 1, tileY + 1), tileX - 1, tileY + 1 },
-        { &world.getSquare(tileX - 1, tileY),     tileX - 1, tileY     },
-        { &world.getSquare(tileX - 1, tileY - 1), tileX - 1, tileY - 1 },
-        { &world.getSquare(tileX, tileY - 1),     tileX,     tileY - 1 },
-        { &world.getSquare(tileX + 1, tileY - 1), tileX + 1, tileY - 1 },
-        { &world.getSquare(tileX + 1, tileY),     tileX + 1, tileY     },
-        { &world.getSquare(tileX + 1, tileY + 1), tileX + 1, tileY + 1 }
-    };
+    std::vector<TileInfo> adjacentTiles;
+
+    // todas as possibilidades de movimento
+    int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+    int dy[] = {-1, 0,  1, -1, 1, -1, 0, 1};
+
+    for(int i = 0; i < 8; i++){
+
+        int mx = tileX + dx[i];
+        int my = tileY + dy[i];
+
+        if(mx < 3 && mx >= 0 && my < 3 && my >= 0) {
+            adjacentTiles.push_back({ &world.getSquare(mx, my), mx, my} );
+        }
+    }
 
     if(energyReservatory < (DNA.metabolism * age * DNA.agingEffect)) {
 

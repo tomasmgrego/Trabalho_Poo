@@ -94,7 +94,7 @@ int main() {
 
             }
 
-            frog->move(meuAmbiente);
+            frog->eat(meuAmbiente);
 
             frogPopulation.erase(
 
