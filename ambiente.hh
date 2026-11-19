@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <vector>
 
+constexpr int GRID_SIZE = 10;
+
 class Frog;
 class Snake;
 
@@ -119,7 +121,7 @@ class generator {
 
     private:
 
-        std::unique_ptr<square> ambienteCompleto[3][3];
+        std::unique_ptr<square> ambienteCompleto[GRID_SIZE][GRID_SIZE];
 
 };
 

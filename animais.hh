@@ -97,11 +97,14 @@ class Animal {
 
         virtual void eat(generator& world) = 0;
         virtual void move(generator& world) = 0;
-        virtual void reproduce(generator& world) = 0;
+        virtual Animal* reproduce(generator& world) = 0;
 
         virtual void breathe(generator& world);
 
         bool isAlive() const { return vitalEnergy > 0.0; }
+
+        const Genes& getDNA() const { return DNA; }
+        void kill() { vitalEnergy = 0.0; }
     
 };
 
@@ -115,8 +118,10 @@ class Frog : public Animal {
     
         void move(generator& world) override;
         void eat(generator& world) override;
+
+        Animal* reproduce(generator& world) override;
         
-        Frog* reproduce(const Frog& partner);
+        Frog* reproduce(generator& world, const Frog& partner);
 
 };
 
@@ -130,8 +135,10 @@ class Snake : public Animal {
     
         void move(generator& world) override;
         void eat(generator& world) override;
+
+        Animal* reproduce(generator& world);
         
-        Snake* reproduce(const Snake& partner);
+        Snake* reproduce(generator& world, const Snake& partner);
 
 };
 

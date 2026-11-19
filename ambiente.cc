@@ -19,8 +19,8 @@ void generator::ambienteGenerator() {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(1, 5);
 
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
+    for(int i = 0; i < GRID_SIZE; i++){
+        for(int j = 0; j < GRID_SIZE; j++){
 
             int numero = dist(gen);
 
